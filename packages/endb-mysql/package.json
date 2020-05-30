@@ -10,7 +10,7 @@
   "repository": "github:endbjs/endb",
   "bugs": "https://github.com/endbjs/endb/issues",
   "dependencies": {
-    "mysql2": "2.1.0",
+    "mysql2": "^2.1.0",
     "@endb/sql": "*"
   },
   "devDependencies": {

@@ -6,18 +6,18 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: Install Node
-        uses: actions/setup-node@master
+      - uses: actions/checkout@v2
+      - name: Install Node LTS
+        uses: actions/setup-node@v2
         with:
           node-version: '12.x'
       - name: Install dependencies
         run: yarn install
       - name: Build documentation
-        run: 'yarn docs:build'
+        run: yarn docs:build
       - name: Deploy documentation
         if: success()
-        uses: crazy-max/ghaction-github-pages@v1
+        uses: crazy-max/ghaction-github-pages@v2
         with:
           build_dir: docs
           commit_message: 'docs: build and deploy docs'
