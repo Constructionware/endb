@@ -79,6 +79,7 @@ class Endb extends EventEmitter {
      * @type {EndbOptions}
      */
     this.options = {
+      ...adapterOptions,
       store: adapterOptions.store || load(adapterOptions),
     };
 
@@ -257,8 +258,7 @@ class Endb extends EventEmitter {
     }
 
     key = this._addKeyPrefix(key);
-    const serialized = serialize(value);
-    await store.set(key, serialized);
+    await store.set(key, serialize(value));
     return true;
   }
 

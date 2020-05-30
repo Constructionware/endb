@@ -1,4 +1,4 @@
-const Endb = require('..');
+const Endb = require('../src');
 const { endbTest } = require('@endb/test');
 
 describe('Core', () => {

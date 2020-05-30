@@ -1,7 +1,7 @@
 'use strict';
 
 const Endb = require('endb');
-const EndbPostgres = require('..');
+const EndbPostgres = require('../src');
 const { endbTest, adapterTest } = require('@endb/test');
 const {
   POSTGRES_HOST = 'localhost',

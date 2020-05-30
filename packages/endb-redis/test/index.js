@@ -1,7 +1,7 @@
 'use strict';
 
 const Endb = require('endb');
-const EndbRedis = require('..');
+const EndbRedis = require('../src');
 const { endbTest, adapterTest } = require('@endb/test');
 const { REDIS_HOST = 'localhost' } = process.env;
 const uri = `redis://${REDIS_HOST}`;

@@ -6,14 +6,11 @@
     ]
   },
   "scripts": {
-    "lint": "eslint --ignore-path .gitignore --ext .js ./",
+    "lint": "eslint --ignore-path .gitignore --ext .js packages/*",
     "test": "jest --ci --noStackTrace --forceExit --maxWorkers=4",
     "test:docker": "docker-compose up --build --abort-on-container-exit --exit-code-from test",
     "docs:build": "node docs.js"
   },
-  "repository": "https://github.com/endbjs/endb.git",
-  "author": "chroventer (https://github.com/chroventer)",
-  "license": "MIT",
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-angular": "^8.3.4",
@@ -28,9 +25,9 @@
       "eslint:recommended"
     ],
     "env": {
-      "es6": true,
       "node": true,
-      "jest": true
+      "jest": true,
+      "es6": true
     },
     "parserOptions": {
       "ecmaVersion": 2018
