@@ -12,7 +12,7 @@
   "repository": "github:endbjs/endb",
   "bugs": "https://github.com/endbjs/endb/issues",
   "dependencies": {
-    "sqlite3": "^4.2.0"
+    "sqlite3": "4.2.0"
   },
   "devDependencies": {
     "endb": "*",

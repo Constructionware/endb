@@ -9,8 +9,8 @@
   "repository": "github:endbjs/endb",
   "bugs": "https://github.com/endbjs/endb/issues",
   "dependencies": {
-    "buffer-json": "^2.0.0",
-    "lodash": "^4.17.15"
+    "buffer-json": "2.0.0",
+    "lodash": "4.17.15"
   },
   "devDependencies": {
     "@endb/test": "*"

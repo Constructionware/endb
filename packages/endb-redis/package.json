@@ -10,7 +10,7 @@
   "repository": "github:endbjs/endb",
   "bugs": "https://github.com/endbjs/endb/issues",
   "dependencies": {
-    "redis": "^3.0.2"
+    "redis": "3.0.2"
   },
   "devDependencies": {
     "endb": "*",

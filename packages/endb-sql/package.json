@@ -10,7 +10,7 @@
   "repository": "github:endbjs/endb",
   "bugs": "https://github.com/endbjs/endb/issues",
   "dependencies": {
-    "sql": "^0.78.0"
+    "sql": "0.78.0"
   },
   "devDependencies": {
     "endb": "*",

@@ -16,7 +16,7 @@
   "repository": "github:endbjs/endb",
   "bugs": "https://github.com/endbjs/endb/issues",
   "dependencies": {
-    "mongodb": "^3.5.8"
+    "mongodb": "3.5.7"
   },
   "devDependencies": {
     "endb": "*",
