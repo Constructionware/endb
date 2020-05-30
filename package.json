@@ -1,23 +1,9 @@
 {
-  "name": "endb",
-  "version": "0.23.0",
-  "description": "Simple key-value storage with support for multiple backends.",
-  "main": "src/index.js",
-  "typings": "typings/index.d.ts",
-  "files": [
-    "src",
-    "typings",
-    "esm"
-  ],
-  "exports": {
-    ".": [
-      {
-        "require": "./src/index.js",
-        "import": "./esm/index.mjs"
-      },
-      "./src/index.js"
-    ],
-    "./esm": "./esm/index.mjs"
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
   },
   "scripts": {
     "lint": "eslint --ignore-path .gitignore --ext .js ./",
@@ -25,38 +11,22 @@
     "test:docker": "docker-compose up --build --abort-on-container-exit --exit-code-from test",
     "docs:build": "node docs.js"
   },
-  "keywords": [
-    "endb",
-    "key-value",
-    "cache",
-    "javascript"
-  ],
-  "license": "MIT",
+  "repository": "https://github.com/endbjs/endb.git",
   "author": "chroventer (https://github.com/chroventer)",
-  "homepage": "https://endb.js.org",
-  "repository": "enhancex/endb",
-  "bugs": "https://github.com/enhancex/endb/issues",
-  "dependencies": {
-    "buffer-json": "^2.0.0",
-    "lodash": "^4.17.15"
-  },
+  "license": "MIT",
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-angular": "8.3.4",
-    "docma": "^3.2.2",
-    "eslint": "^7.0.0",
+    "@commitlint/config-angular": "^8.3.4",
+    "eslint": "^7.1.0",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
-    "lint-staged": "^10.2.2",
-    "mongodb": "^3.5.6",
-    "mysql2": "^2.1.0",
-    "pg": "^8.1.0",
-    "redis": "^3.0.2",
-    "sql": "^0.78.0",
-    "sqlite3": "^4.1.1"
+    "lerna": "^3.22.0",
+    "lint-staged": "^10.2.6"
   },
   "eslintConfig": {
-    "extends": "eslint:recommended",
+    "extends": [
+      "eslint:recommended"
+    ],
     "env": {
       "es6": true,
       "node": true,

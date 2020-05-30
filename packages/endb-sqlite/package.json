@@ -1,0 +1,21 @@
+{
+  "name": "@endb/sqlite",
+  "version": "1.0.0",
+  "description": "SQLite adapter for Endb",
+  "main": "src/index.js",
+  "files": [
+    "src"
+  ],
+  "license": "MIT",
+  "author": "chroventer (https://github.com/chroventer)",
+  "homepage": "https://endb.js.org",
+  "repository": "github:endbjs/endb",
+  "bugs": "https://github.com/endbjs/endb/issues",
+  "dependencies": {
+    "sqlite3": "4.2.0"
+  },
+  "devDependencies": {
+    "endb": "*",
+    "@endb/test": "*"
+  }
+}

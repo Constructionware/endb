@@ -1,0 +1,18 @@
+{
+  "name": "endb",
+  "version": "0.23.0",
+  "main": "src/index.js",
+  "files": ["src"],
+  "license": "MIT",
+  "author": "chroventer (https://github.com/chroventer)",
+  "homepage": "https://endb.js.org",
+  "repository": "github:endbjs/endb",
+  "bugs": "https://github.com/endbjs/endb/issues",
+  "dependencies": {
+    "buffer-json": "2.0.0",
+    "lodash": "4.17.15"
+  },
+  "devDependencies": {
+    "@endb/test": "*"
+  }
+}
