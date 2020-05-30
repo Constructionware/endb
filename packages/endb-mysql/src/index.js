@@ -5,14 +5,11 @@ const EndbSql = require('@endb/sql');
 
 module.exports = class EndbMysql extends EndbSql {
 	constructor(options = {}) {
-        options = {
-            uri: 'mysql://localhost',
-            ...(typeof options === 'string' ? { uri: options } : options)
-        };
+        const { uri = 'mysql://localhost' } = options;
 		super({
 			dialect: 'mysql',
 			async connect() {
-				const connection = await createConnection(options.uri);
+				const connection = await createConnection(uri);
 				return async (sqlString) => {
 					const [row] = await connection.execute(sqlString);
 					return row;

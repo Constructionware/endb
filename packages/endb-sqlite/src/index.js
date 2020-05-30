@@ -6,15 +6,12 @@ const EndbSql = require('@endb/sql');
 
 module.exports = class EndbSqlite extends EndbSql {
   constructor(options = {}) {
-    options = {
-      uri: 'sqlite://:memory:',
-      ...(typeof options === 'string' ? { uri: options } : options),
-    };
+    const { uri = 'sqlite://:memory:' } = options;
     super({
       dialect: 'sqlite',
       async connect() {
         return new Promise((resolve, reject) => {
-          const path = options.uri.replace(/^sqlite:\/\//, '');
+          const path = uri.replace(/^sqlite:\/\//, '');
           const db = new Database(path, (error) => {
             if (error) {
               reject(error);
