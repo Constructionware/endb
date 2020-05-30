@@ -20,6 +20,5 @@ module.exports = class EndbMysql extends EndbSql {
 			},
 			...options
 		});
-		this.options = options;
 	}
 };

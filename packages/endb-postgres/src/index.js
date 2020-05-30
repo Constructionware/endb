@@ -20,6 +20,5 @@ module.exports = class EndbPostgres extends EndbSql {
       },
       ...options,
     });
-    this.options = options;
   }
 };

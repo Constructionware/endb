@@ -7,17 +7,16 @@ const _has = require('lodash/has');
 const _set = require('lodash/set');
 const _unset = require('lodash/unset');
 
-const adapters = {
-  mongo: '@endb/mongo',
-  mongodb: '@endb/mongo',
-  mysql: '@endb/mysql',
-  postgres: '@endb/postgres',
-  postgresql: '@endb/postgres',
-  redis: '@endb/redis',
-  sqlite: '@endb/sqlite',
-};
-
 const load = (options) => {
+  const adapters = {
+    mongo: '@endb/mongo',
+    mongodb: '@endb/mongo',
+    mysql: '@endb/mysql',
+    postgres: '@endb/postgres',
+    postgresql: '@endb/postgres',
+    redis: '@endb/redis',
+    sqlite: '@endb/sqlite',
+  };
   let adapter;
   if (options.adapter) {
     adapter = options.adapter;
@@ -140,7 +139,7 @@ class Endb extends EventEmitter {
    */
   async delete(key, path = null) {
     if (path !== null) {
-      const data = await this.get(key) || {};
+      const data = (await this.get(key)) || {};
       _unset(data, path);
       const result = await this.set(key, data);
       return result;
@@ -153,7 +152,7 @@ class Endb extends EventEmitter {
 
   async entries() {
     const elements = await this.all();
-    return elements.map(element => [element.key, element.value]);
+    return elements.map((element) => [element.key, element.value]);
   }
 
   /**
@@ -194,9 +193,7 @@ class Endb extends EventEmitter {
     const { store, deserialize } = this.options;
     const serialized = await store.get(key);
     const deserialized =
-      typeof serialized === 'string'
-        ? deserialize(serialized)
-        : serialized;
+      typeof serialized === 'string' ? deserialize(serialized) : serialized;
     if (deserialized === undefined) return;
     if (path !== null) return _get(deserialized, path);
     return deserialized;
@@ -210,7 +207,7 @@ class Endb extends EventEmitter {
    */
   async has(key, path = null) {
     if (path !== null) {
-      const data = await this.get(key) || {};
+      const data = (await this.get(key)) || {};
       return _has(data, path);
     }
 
@@ -226,7 +223,7 @@ class Endb extends EventEmitter {
    */
   async keys() {
     const elements = await this.all();
-    return elements.map(element => element.key);
+    return elements.map((element) => element.key);
   }
 
   /**
@@ -253,7 +250,7 @@ class Endb extends EventEmitter {
   async set(key, value, path = null) {
     const { store, serialize } = this.options;
     if (path !== null) {
-      const data = await this.get(key) || {};
+      const data = (await this.get(key)) || {};
       value = _set(data, path, value);
     }
 
@@ -268,7 +265,7 @@ class Endb extends EventEmitter {
    */
   async values() {
     const elements = await this.all();
-    return elements.map(element => element.value);
+    return elements.map((element) => element.value);
   }
 
   _addKeyPrefix(key) {

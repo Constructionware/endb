@@ -30,6 +30,5 @@ module.exports = class EndbSqlite extends EndbSql {
       },
       ...options,
     });
-    this.options = options;
   }
 };
