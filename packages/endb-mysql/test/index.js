@@ -4,9 +4,9 @@ const Endb = require('endb');
 const EndbMysql = require('@endb/mysql');
 const { endbTest, adapterTest } = require('@endb/test');
 const {
-  MYSQL_HOST = 'localhost',
+  MYSQL_HOST = 'mysql',
   MYSQL_USER = 'mysql',
-  MYSQL_PASSWORD,
+  MYSQL_PASSWORD = 'endb',
   MYSQL_DATABASE = 'endb_test',
 } = process.env;
 const uri = `mysql://${MYSQL_USER}${

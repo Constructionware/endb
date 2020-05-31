@@ -4,14 +4,15 @@ const Endb = require('endb');
 const EndbPostgres = require('../src');
 const { endbTest, adapterTest } = require('@endb/test');
 const {
-  POSTGRES_HOST = 'localhost',
+  POSTGRES_HOST = 'postgres',
   POSTGRES_USER = 'postgres',
-  POSTGRES_PASSWORD,
+  POSTGRES_PASSWORD = 'endb',
   POSTGRES_DB = 'endb_test',
+  POSTGRES_PORT = 5432
 } = process.env;
 const uri = `postgresql://${POSTGRES_USER}${
   POSTGRES_PASSWORD ? `:${POSTGRES_PASSWORD}` : ''
-}@${POSTGRES_HOST}:5432/${POSTGRES_DB}`;
+}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}`;
 
 adapterTest(test, Endb, uri, 'postgresql://foo');
 endbTest(test, Endb, {

@@ -17,28 +17,16 @@ const load = (options) => {
     redis: '@endb/redis',
     sqlite: '@endb/sqlite',
   };
-  let adapter;
-  if (options.adapter) {
-    adapter = options.adapter;
-  } else if (options.uri) {
-    const matches = /^[^:]+/.exec(options.uri);
-    if (matches === null) {
-      throw new Error(
-        `[Endb] Could not infer adapter from URI "${options.uri}"`
-      );
-    }
-
-    adapter = matches[0];
-  }
-
-  if (!adapter) return new Map();
   const validAdapters = Object.keys(adapters);
-  if (validAdapters.includes(adapter)) {
-    const Adapter = require(adapters[adapter]);
-    return new Adapter(options);
+  if (options.adapter || options.uri) {
+    const adapter = options.adapter || /^[^:]*/.exec(options.uri)[0];
+    if (validAdapters.includes(adapter)) {
+      const Adapter = require(adapters[adapter]);
+      return new Adapter(options);
+    }
   }
 
-  throw new Error(`[Endb] Invalid adapter "${adapter}"`);
+  return new Map();
 };
 
 /**
