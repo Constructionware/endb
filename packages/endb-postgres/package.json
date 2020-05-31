@@ -14,7 +14,7 @@
     "@endb/sql": "*"
   },
   "devDependencies": {
-    "endb": "*",
+    "endb": "1.0.0",
     "@endb/test": "*"
   }
 }

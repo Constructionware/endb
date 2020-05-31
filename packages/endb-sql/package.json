@@ -13,7 +13,7 @@
     "sql": "0.78.0"
   },
   "devDependencies": {
-    "endb": "*",
+    "endb": "1.0.0",
     "@endb/test": "*",
     "sqlite3": "4.2.0"
   }
