@@ -188,7 +188,7 @@ const valueTest = (test, Endb, options) => {
   });
 };
 
-const adapterTest = (it, Endb, goodUri, badUri) => {
+const adapterTest = (it, Endb, goodUri) => {
   describe('Adapter Test', () => {
     it('should infer the adapter from the URI', async () => {
       const endb = new Endb(goodUri);
@@ -197,13 +197,6 @@ const adapterTest = (it, Endb, goodUri, badUri) => {
       await endb.set('foo', 'bar');
       expect(await endb.get('foo')).toBe('bar');
       await endb.clear();
-    });
-
-    it('should emit connection errors', (done) => {
-      const endb = new Endb(badUri);
-      endb.on('error', () => {
-        done();
-      });
     });
   });
 };

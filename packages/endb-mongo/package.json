@@ -3,13 +3,7 @@
   "version": "1.0.0",
   "description": "MongoDB adapter for Endb",
   "main": "src/index.js",
-  "files": [
-    "src"
-  ],
-  "keywords": [
-    "endb",
-    "mongodb"
-  ],
+  "files": ["src"],
   "license": "MIT",
   "author": "chroventer (https://github.com/chroventer)",
   "homepage": "https://endb.js.org",
