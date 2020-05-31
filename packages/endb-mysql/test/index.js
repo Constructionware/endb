@@ -15,5 +15,5 @@ const uri = `mysql://${MYSQL_USER}${
 
 adapterTest(test, Endb, uri, 'mysql://foo');
 endbTest(test, Endb, {
-    store: new EndbMysql(uri)
+    store: new EndbMysql({ uri })
 });

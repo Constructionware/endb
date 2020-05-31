@@ -16,5 +16,5 @@ const uri = `postgresql://${POSTGRES_USER}${
 
 adapterTest(test, Endb, uri, 'postgresql://foo');
 endbTest(test, Endb, {
-    store: new EndbPostgres(uri)
+    store: new EndbPostgres({ uri })
 });

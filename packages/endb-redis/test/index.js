@@ -8,5 +8,5 @@ const uri = `redis://${REDIS_HOST}`;
 
 adapterTest(test, Endb, uri, 'redis://foo');
 endbTest(test, Endb, {
-    store: new EndbRedis(uri)
+    store: new EndbRedis({ uri })
 });

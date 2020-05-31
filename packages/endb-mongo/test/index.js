@@ -8,5 +8,5 @@ const uri = `mongodb://${MONGO_HOST}:27017?useUnifiedTopology=true`;
 
 adapterTest(test, Endb, uri, 'mongodb://127.0.0.1:1234');
 endbTest(test, Endb, {
-    store: new EndbMongo(uri)
+    store: new EndbMongo({ uri })
 });
