@@ -12,13 +12,13 @@
     "docs:build": "node docs.js"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-angular": "^8.3.4",
-    "eslint": "^7.1.0",
-    "husky": "^4.2.5",
-    "jest": "^26.0.1",
-    "lerna": "^3.22.0",
-    "lint-staged": "^10.2.6"
+    "@commitlint/cli": "8.3.5",
+    "@commitlint/config-angular": "8.3.4",
+    "eslint": "7.0.0",
+    "husky": "4.2.5",
+    "jest": "26.0.1",
+    "lerna": "3.21.0",
+    "lint-staged": "10.2.4"
   },
   "eslintConfig": {
     "extends": [
