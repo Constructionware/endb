@@ -13,6 +13,11 @@
     "lodash": "4.17.15"
   },
   "devDependencies": {
-    "@endb/test": "*"
+    "@endb/test": "1.0.0",
+    "@endb/mongo": "1.0.0",
+    "@endb/mysql": "1.0.0",
+    "@endb/postgres": "1.0.0",
+    "@endb/redis": "1.0.0",
+    "@endb/sqlite": "1.0.0"
   }
 }
