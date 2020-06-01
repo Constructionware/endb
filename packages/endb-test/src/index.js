@@ -3,7 +3,6 @@
 const apiTest = (test, Endb, options = {}) => {
   describe('API Test', () => {
     beforeEach(async () => {
-      jest.setTimeout(20000);
       const endb = new Endb(options);
       await endb.clear();
     });
@@ -125,69 +124,6 @@ const apiTest = (test, Endb, options = {}) => {
   });
 };
 
-const valueTest = (test, Endb, options) => {
-  describe('Value Test', () => {
-    beforeEach(async () => {
-      const endb = new Endb(options);
-      await endb.clear();
-    });
-
-    test('value can be a boolean', async () => {
-      const endb = new Endb(options);
-      await endb.set('foo', true);
-      expect(await endb.get('foo')).toBe(true);
-      await endb.set('bar', false);
-      expect(await endb.get('bar')).toBe(false);
-    });
-
-    test('value can be null', async () => {
-      const endb = new Endb(options);
-      await endb.set('foo', null);
-      expect(await endb.get('foo')).toBeNull();
-    });
-
-    test('value can be a string', async () => {
-      const endb = new Endb(options);
-      await endb.set('foo', 'bar');
-      expect(await endb.get('foo')).toBe('bar');
-    });
-
-    test('value can be a number', async () => {
-      const endb = new Endb(options);
-      await endb.set('foo', 0);
-      expect(await endb.get('foo')).toBe(0);
-    });
-
-    test('value can be an object', async () => {
-      const endb = new Endb(options);
-      await endb.set('foo', {
-        bar: 'fizz',
-      });
-      expect(await endb.get('foo')).toEqual({ bar: 'fizz' });
-    });
-
-    test('value can be an array', async () => {
-      const endb = new Endb(options);
-      await endb.set('foo', ['bar']);
-      expect(await endb.get('foo')).toEqual(['bar']);
-    });
-
-    test('value can be a buffer', async () => {
-      const endb = new Endb(options);
-      const buffer = Buffer.from('bar');
-      await endb.set('foo', buffer);
-      expect(buffer.equals(await endb.get('foo'))).toBe(true);
-    });
-
-    test('value can contain quotes', async () => {
-      const endb = new Endb(options);
-      const value = '"';
-      await endb.set('foo', value);
-      expect(await endb.get('foo')).toBe(value);
-    });
-  });
-};
-
 const adapterTest = (it, Endb, goodUri, badUri) => {
   describe('Adapter Test', () => {
     it('should infer the adapter from the URI', async () => {
@@ -201,16 +137,13 @@ const adapterTest = (it, Endb, goodUri, badUri) => {
 
     it('should emit connection errors', (done) => {
       const endb = new Endb(badUri);
-      endb.on('error', () => {
-        done();
-      });
+      endb.on('error', () => done());
     });
   });
 };
 
 const endbTest = (test, Endb, options = {}) => {
   apiTest(test, Endb, options);
-  valueTest(test, Endb, options);
 };
 
 module.exports = { endbTest, apiTest, adapterTest };
