@@ -2,7 +2,7 @@
 
 module.exports.apiTest = (test, Endb, options = {}) => {
   describe('API Test', () => {
-    beforeAll(async () => {
+    beforeEach(async () => {
       const endb = new Endb(options);
       await endb.clear();
     });
@@ -105,21 +105,21 @@ module.exports.apiTest = (test, Endb, options = {}) => {
       expect(await endb.get('foo')).toEqual({ fizz: { buzz: 'bar' } });
     });
 
-    afterAll(async () => {
+    afterEach(async () => {
       const endb = new Endb(options);
       await endb.clear();
     });
   });
 };
 
-module.exports.adapterTest = (it, Endb, goodUri, badUri) => {
+module.exports.adapterTest = (test, Endb, goodUri, badUri) => {
   describe('Adapter Test', () => {
-    beforeAll(async () => {
+    beforeEach(async () => {
       const endb = new Endb(goodUri);
       await endb.clear();
     });
 
-    it('should infer the adapter from the URI', async () => {
+    test('should infer the adapter from the URI', async () => {
       const endb = new Endb(goodUri);
       await endb.clear();
       expect(await endb.get('foo')).toBeUndefined();
@@ -128,12 +128,12 @@ module.exports.adapterTest = (it, Endb, goodUri, badUri) => {
       await endb.clear();
     });
 
-    it('should emit connection errors', (done) => {
+    test('should emit connection errors', (done) => {
       const endb = new Endb(badUri);
       endb.on('error', () => done());
     });
 
-    afterAll(async () => {
+    afterEach(async () => {
       const endb = new Endb(goodUri);
       await endb.clear();
     });

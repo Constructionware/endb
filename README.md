@@ -3,6 +3,7 @@
 </a>
 
 # Endb &middot; [![Test](https://github.com/enhancex/endb/workflows/Test/badge.svg)](https://github.com/enhancex/endb) [![codecov](https://codecov.io/gh/enhancex/endb/branch/master/graph/badge.svg)](https://codecov.io/gh/enhancex/endb) [![Downloads](https://badgen.net/npm/dt/endb)](https://www.npmjs.com/package/endb) [![GitHub Stars](https://badgen.net/github/stars/enhancex/endb)](https://github.com/enhancex/endb) [![License](https://badgen.net/github/license/enhancex/endb)](https://github.com/enhancex/endb/blob/master/LICENSE) [![Discord](https://discordapp.com/api/guilds/697425515363172362/embed.png)](https://discord.gg/d5SYmjj)
+
 Endb is a simple key-value storage for multiple database drivers. Supports MongoDB, MySQL, Postgres, Redis, and SQLite.
 
 - [**Easy-to-use**](#usage): Endb has a simplistic and convenient promise-based API.
