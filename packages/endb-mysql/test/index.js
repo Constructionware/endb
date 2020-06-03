@@ -2,7 +2,7 @@
 
 const Endb = require('endb');
 const EndbMysql = require('@endb/mysql');
-const { endbTest, adapterTest } = require('@endb/test');
+const { apiTest, adapterTest } = require('@endb/test');
 const {
   MYSQL_HOST = 'mysql',
   MYSQL_USER = 'mysql',
@@ -15,4 +15,4 @@ const uri = `mysql://${MYSQL_USER}${
 const store = new EndbMysql({ uri });
 
 adapterTest(test, Endb, uri, 'mysql://foo');
-endbTest(test, Endb, { store });
+apiTest(test, Endb, { store });

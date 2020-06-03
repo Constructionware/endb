@@ -1,6 +1,6 @@
 'use strict';
 
-const apiTest = (test, Endb, options = {}) => {
+module.exports.apiTest = (test, Endb, options = {}) => {
   describe('API Test', () => {
     beforeEach(async () => {
       const endb = new Endb(options);
@@ -112,8 +112,13 @@ const apiTest = (test, Endb, options = {}) => {
   });
 };
 
-const adapterTest = (it, Endb, goodUri, badUri) => {
+module.exports.adapterTest = (it, Endb, goodUri, badUri) => {
   describe('Adapter Test', () => {
+    beforeEach(async () => {
+      const endb = new Endb(goodUri);
+      await endb.clear();
+    });
+
     it('should infer the adapter from the URI', async () => {
       const endb = new Endb(goodUri);
       await endb.clear();
@@ -127,11 +132,10 @@ const adapterTest = (it, Endb, goodUri, badUri) => {
       const endb = new Endb(badUri);
       endb.on('error', () => done());
     });
+
+    afterEach(async () => {
+      const endb = new Endb(goodUri);
+      await endb.clear();
+    });
   });
 };
-
-const endbTest = (test, Endb, options = {}) => {
-  apiTest(test, Endb, options);
-};
-
-module.exports = { endbTest, apiTest, adapterTest };

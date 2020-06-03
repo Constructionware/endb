@@ -1,7 +1,7 @@
 'use strict';
 
 const Endb = require('endb');
-const { endbTest } = require('@endb/test');
+const { apiTest } = require('@endb/test');
 const EndbSql = require('@endb/sql');
 const { promisify } = require('util');
 const { Database } = require('sqlite3');
@@ -28,6 +28,6 @@ class TestSqlite extends EndbSql {
   }
 }
 
-endbTest(test, Endb, {
+apiTest(test, Endb, {
   store: new TestSqlite(),
 });

@@ -2,7 +2,7 @@
 
 const Endb = require('endb');
 const EndbPostgres = require('../src');
-const { endbTest, adapterTest } = require('@endb/test');
+const { apiTest, adapterTest } = require('@endb/test');
 const {
   POSTGRES_HOST = 'localhost',
   POSTGRES_USER = 'postgres',
@@ -16,4 +16,4 @@ const uri = `postgresql://${POSTGRES_USER}${
 const store = new EndbPostgres({ uri });
 
 adapterTest(test, Endb, uri, 'postgresql://foo');
-endbTest(test, Endb, { store });
+apiTest(test, Endb, { store });

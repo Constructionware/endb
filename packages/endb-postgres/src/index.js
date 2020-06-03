@@ -9,8 +9,8 @@ module.exports = class EndbPostgres extends EndbSql {
     super({
       dialect: 'postgres',
       async connect() {
+        const pool = new Pool({ connectionString: uri });
         return Promise.resolve(async (sqlString) => {
-          const pool = new Pool({ connectionString: uri });
           const { rows } = await pool.query(sqlString);
           return rows;
         });

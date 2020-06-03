@@ -2,7 +2,7 @@
 
 const Endb = require('endb');
 const EndbSqlite = require('@endb/sqlite');
-const { endbTest, adapterTest } = require('@endb/test');
+const { apiTest, adapterTest } = require('@endb/test');
 const uri = 'sqlite://test.sqlite';
 const store = new EndbSqlite({
   uri,
@@ -15,4 +15,4 @@ adapterTest(
   uri,
   'sqlite://non/existent/database.sqlite'
 );
-endbTest(test, Endb, { store });
+apiTest(test, Endb, { store });

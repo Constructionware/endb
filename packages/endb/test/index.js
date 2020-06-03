@@ -1,5 +1,6 @@
 const Endb = require('../src');
-const { endbTest } = require('@endb/test');
+const { apiTest } = require('@endb/test');
+const store = new Map();
 
 describe('Core', () => {
   it('should be a class', () => {
@@ -31,6 +32,4 @@ describe('Core', () => {
   });
 });
 
-endbTest(test, Endb, {
-  store: new Map()
-});
+apiTest(test, Endb, { store });
