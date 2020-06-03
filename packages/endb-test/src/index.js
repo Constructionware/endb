@@ -51,12 +51,6 @@ const apiTest = (test, Endb, options = {}) => {
       expect(await endb.delete('foo', path)).toBe(true);
     });
 
-    test('.find(fn) resolves to value', async () => {
-      const endb = new Endb(options);
-      await endb.set('foo', 'bar');
-      expect(await endb.find((value) => value === 'bar')).toBe('bar');
-    });
-
     test('.get(key) resolves to value', async () => {
       const endb = new Endb(options);
       await endb.set('foo', 'bar');
