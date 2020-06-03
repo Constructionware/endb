@@ -7,7 +7,7 @@
     ]
   },
   "scripts": {
-    "lint": "eslint --ignore-path .gitignore --ext .js packages/*",
+    "lint": "eslint --ignore-path .gitignore --ext .js packages/**",
     "test": "jest --ci --noStackTrace --forceExit --maxWorkers=4",
     "test:docker": "docker-compose up --build --abort-on-container-exit --exit-code-from test",
     "docs:build": "node docs.js"
