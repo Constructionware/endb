@@ -57,11 +57,6 @@ const apiTest = (test, Endb, options = {}) => {
       expect(await endb.find((value) => value === 'bar')).toBe('bar');
     });
 
-    test('.find(fn) with non-existent value resolves to undefined', async () => {
-      const endb = new Endb(options);
-      expect(await endb.find((value) => value === 'bar')).toBeUndefined();
-    });
-
     test('.get(key) resolves to value', async () => {
       const endb = new Endb(options);
       await endb.set('foo', 'bar');
