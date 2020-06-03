@@ -17,13 +17,10 @@ const load = (options) => {
     redis: '@endb/redis',
     sqlite: '@endb/sqlite',
   };
-  const validAdapters = Object.keys(adapters);
   if (options.adapter || options.uri) {
     const adapter = options.adapter || /^[^:]*/.exec(options.uri)[0];
-    if (validAdapters.includes(adapter)) {
-      const Adapter = require(adapters[adapter]);
-      return new Adapter(options);
-    }
+    const Adapter = require(adapters[adapter]);
+    return new Adapter(options);
   }
 
   return new Map();
@@ -36,12 +33,12 @@ class Endb extends EventEmitter {
       namespace: 'endb',
       serialize: BJSON.stringify,
       deserialize: BJSON.parse,
-      ...(typeof options === 'string' ? { uri: options } : options)
+      ...(typeof options === 'string' ? { uri: options } : options),
     };
 
     if (!this.options.store) {
-			this.options.store = load(this.options);
-		}
+      this.options.store = load(this.options);
+    }
 
     if (typeof this.options.store.on === 'function') {
       this.options.store.on('error', (error) => this.emit('error', error));
@@ -90,8 +87,8 @@ class Endb extends EventEmitter {
     }
 
     const { store } = this.options;
-    key = this._addKeyPrefix(key);
-    return store.delete(key);
+    const keyPrefixed = this._addKeyPrefix(key);
+    return store.delete(keyPrefixed);
   }
 
   async entries() {
@@ -99,22 +96,13 @@ class Endb extends EventEmitter {
     return elements.map((element) => [element.key, element.value]);
   }
 
-  async find(fn) {
-    const data = await this.all();
-    for (const { key, value } of data) {
-      if (fn(value, key)) return value;
-    }
-
-    return undefined;
-  }
-
   async get(key, path = null) {
-    key = this._addKeyPrefix(key);
+    const keyPrefixed = this._addKeyPrefix(key);
     const { store, deserialize } = this.options;
-    const serialized = await store.get(key);
+    const serialized = await store.get(keyPrefixed);
     const deserialized =
       typeof serialized === 'string' ? deserialize(serialized) : serialized;
-    if (deserialized === undefined) return;
+    if (deserialized === undefined) return undefined;
     if (path !== null) return _get(deserialized, path);
     return deserialized;
   }
@@ -143,8 +131,9 @@ class Endb extends EventEmitter {
       value = _set(data, path, value);
     }
 
-    key = this._addKeyPrefix(key);
-    await store.set(key, serialize(value));
+    const keyPrefixed = this._addKeyPrefix(key);
+    const serialized = serialize(value);
+    await store.set(keyPrefixed, serialized);
     return true;
   }
 
