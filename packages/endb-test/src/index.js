@@ -2,7 +2,7 @@
 
 module.exports.apiTest = (test, Endb, options = {}) => {
   describe('API Test', () => {
-    beforeEach(async () => {
+    beforeAll(async () => {
       const endb = new Endb(options);
       await endb.clear();
     });
@@ -105,7 +105,7 @@ module.exports.apiTest = (test, Endb, options = {}) => {
       expect(await endb.get('foo')).toEqual({ fizz: { buzz: 'bar' } });
     });
 
-    afterEach(async () => {
+    afterAll(async () => {
       const endb = new Endb(options);
       await endb.clear();
     });
@@ -114,7 +114,7 @@ module.exports.apiTest = (test, Endb, options = {}) => {
 
 module.exports.adapterTest = (it, Endb, goodUri, badUri) => {
   describe('Adapter Test', () => {
-    beforeEach(async () => {
+    beforeAll(async () => {
       const endb = new Endb(goodUri);
       await endb.clear();
     });
@@ -133,7 +133,7 @@ module.exports.adapterTest = (it, Endb, goodUri, badUri) => {
       endb.on('error', () => done());
     });
 
-    afterEach(async () => {
+    afterAll(async () => {
       const endb = new Endb(goodUri);
       await endb.clear();
     });
