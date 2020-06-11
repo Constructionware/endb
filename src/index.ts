@@ -95,10 +95,7 @@ export class Endb<TVal> extends EventEmitter {
     return store.clear();
   }
 
-  public async delete(
-    key: string,
-    path?: string
-  ): Promise<boolean> {
+  public async delete(key: string, path?: string): Promise<boolean> {
     if (typeof path !== "undefined") {
       const value = await this.get(key);
       _unset(value || {}, path);
@@ -115,10 +112,7 @@ export class Endb<TVal> extends EventEmitter {
     return elements.map((element) => [element.key, element.value]);
   }
 
-  public async get(
-    key: string,
-    path?: string
-  ): Promise<void | TVal | any> {
+  public async get(key: string, path?: string): Promise<void | TVal | any> {
     const { store, deserialize } = this.options;
     const keyPrefixed = this.addKeyPrefix(key);
     const value = await store.get(keyPrefixed);
@@ -128,10 +122,7 @@ export class Endb<TVal> extends EventEmitter {
     return deserialized;
   }
 
-  public async has(
-    key: string,
-    path?: string
-  ): Promise<boolean> {
+  public async has(key: string, path?: string): Promise<boolean> {
     if (typeof path !== "undefined") {
       const value = await this.get(key);
       return _has(value || {}, path);

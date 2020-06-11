@@ -25,6 +25,9 @@
   "repository": "enhancex/endb",
   "bugs": "https://github.com/enhancex/endb/issues",
   "dependencies": {
+    "@types/mongodb": "^3.5.20",
+    "@types/redis": "^2.8.22",
+    "@types/sqlite3": "^3.1.6",
     "buffer-json": "^2.0.0",
     "lodash": "^4.17.15"
   },
