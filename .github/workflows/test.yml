@@ -6,6 +6,6 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Run test script
-        run: yarn test:docker
+        run: npm run test:docker
       - name: Upload coverage
         uses: codecov/codecov-action@v1

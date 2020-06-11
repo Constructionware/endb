@@ -1,4 +1,4 @@
 FROM node:lts-alpine
 WORKDIR /repo
-CMD yarn install && \
-    yarn test
+CMD npm install && \
+    npm test

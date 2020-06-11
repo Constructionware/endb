@@ -1,8 +1,11 @@
 module.exports = {
-  collectCoverage: true,
-  coveragePathIgnorePatterns: ['/node_modules/', '/test/'],
-  coverageDirectory: "coverage",
+  preset: "ts-jest",
   testEnvironment: "node",
-  testMatch: ["**/test/**/*.test.js"],
-  verbose: true,
+  collectCoverage: true,
+  coverageDirectory: "coverage",
+  globals: {
+    "ts-jest": {
+      tsConfig: "tsconfig.json",
+    },
+  },
 };
