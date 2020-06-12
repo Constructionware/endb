@@ -1,83 +1,19 @@
 {
-  "name": "endb",
-  "version": "0.23.0",
-  "description": "Simple key-value storage with support for multiple backends.",
-  "main": "src/index.js",
-  "typings": "typings/index.d.ts",
-  "files": [
-    "src",
-    "typings",
-    "esm"
+  "private": true,
+  "workspaces": [
+    "packages/*"
   ],
-  "exports": {
-    ".": [
-      {
-        "require": "./src/index.js",
-        "import": "./esm/index.mjs"
-      },
-      "./src/index.js"
-    ],
-    "./esm": "./esm/index.mjs"
-  },
   "scripts": {
     "lint": "eslint --ignore-path .gitignore --ext .js ./",
     "test": "jest --ci --noStackTrace --forceExit --maxWorkers=4",
     "test:docker": "docker-compose up --build --abort-on-container-exit --exit-code-from test",
-    "docs:build": "node docs.js"
-  },
-  "keywords": [
-    "endb",
-    "key-value",
-    "cache",
-    "javascript"
-  ],
-  "license": "MIT",
-  "author": "chroventer (https://github.com/chroventer)",
-  "homepage": "https://endb.js.org",
-  "repository": "enhancex/endb",
-  "bugs": "https://github.com/enhancex/endb/issues",
-  "dependencies": {
-    "buffer-json": "^2.0.0",
-    "lodash": "^4.17.15"
+    "build": "lerna run tsc",
+    "build:docs": "node docs.js",
+    "publish": "lerna publish"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-angular": "8.3.4",
     "docma": "^3.2.2",
-    "eslint": "^7.0.0",
-    "husky": "^4.2.5",
-    "jest": "^26.0.1",
-    "lint-staged": "^10.2.2",
-    "mongodb": "^3.5.6",
-    "mysql2": "^2.1.0",
-    "pg": "^8.1.0",
-    "redis": "^3.0.2",
-    "sql": "^0.78.0",
-    "sqlite3": "^4.1.1"
-  },
-  "eslintConfig": {
-    "extends": "eslint:recommended",
-    "env": {
-      "es6": true,
-      "node": true,
-      "jest": true
-    },
-    "parserOptions": {
-      "ecmaVersion": 2018
-    }
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": "yarn lint --fix"
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-angular"
-    ]
+    "lerna": "^3.22.1",
+    "typescript": "^3.9.5"
   }
 }
