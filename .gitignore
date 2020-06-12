@@ -25,3 +25,9 @@ coverage*
 # Lock files
 package-lock.json
 yarn.lock
+
+# Build
+dist/
+
+# Coverage
+coverage/

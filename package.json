@@ -4,16 +4,23 @@
     "packages/*"
   ],
   "scripts": {
-    "lint": "eslint --ignore-path .gitignore --ext .js ./",
-    "test": "jest --ci --noStackTrace --forceExit --maxWorkers=4",
-    "test:docker": "docker-compose up --build --abort-on-container-exit --exit-code-from test",
-    "build": "lerna run tsc",
-    "build:docs": "node docs.js",
+    "test": "jest",
+    "build": "rimraf packages/**/dist && tsc",
     "publish": "lerna publish"
   },
   "devDependencies": {
-    "docma": "^3.2.2",
+    "@types/jest": "^26.0.0",
+    "jest": "^26.0.1",
     "lerna": "^3.22.1",
+    "ts-jest": "^26.1.0",
     "typescript": "^3.9.5"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "verbose": true,
+    "collectCoverage": true,
+    "coverageDirectory": "coverage",
+    "roots": ["<rootDir>/packages"]
   }
 }

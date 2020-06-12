@@ -1,7 +1,7 @@
 {
-  "name": "endb",
+  "name": "@endb/mongo",
   "version": "1.0.0",
-  "description": "Key-value storage with support for multiple databases.",
+  "description": "MongoDB adapter for Endb.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -13,12 +13,10 @@
   "repository": "github:enhancex/endb",
   "bugs": "https://github.com/enhancex/endb/issues",
   "dependencies": {
-    "lodash": "4.17.15",
-    "buffer-json": "2.0.0"
+    "mongodb": "3.5.9"
   },
   "devDependencies": {
-    "@types/lodash": "4.14.108",
-    "@types/buffer-json": "2.0.0",
+    "@types/mongodb": "3.1.31",
     "@endb/test": "1.0.0"
   }
 }
