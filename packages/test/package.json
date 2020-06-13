@@ -7,12 +7,15 @@
   "files": [
     "dist"
   ],
+  "scripts": {
+    "build": "rimraf dist && tsc"
+  },
   "license": "MIT",
   "author": "chroventer (https://github.com/chroventer)",
   "homepage": "https://endb.js.org",
-  "repository": "github:enhancex/endb",
+  "repository": "enhancex/endb",
   "bugs": "https://github.com/enhancex/endb/issues",
   "devDependencies": {
-    "endb": "1.0.0"
+    "rimraf": "3.0.2"
   }
 }

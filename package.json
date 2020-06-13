@@ -5,7 +5,7 @@
   ],
   "scripts": {
     "test": "jest",
-    "build": "rimraf packages/**/dist && tsc",
+    "build": "lerna run build",
     "publish": "lerna publish"
   },
   "devDependencies": {
@@ -21,6 +21,8 @@
     "verbose": true,
     "collectCoverage": true,
     "coverageDirectory": "coverage",
-    "roots": ["<rootDir>/packages"]
+    "roots": [
+      "<rootDir>/packages"
+    ]
   }
 }

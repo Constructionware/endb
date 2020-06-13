@@ -1,5 +1,3 @@
-import { Endb as EndbClass } from "endb";
-
 export const clearEach = async (Endb: any, options = {}) => {
   const endb = new Endb(options);
   await endb.clear();

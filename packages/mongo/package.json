@@ -10,7 +10,7 @@
   "license": "MIT",
   "author": "chroventer (https://github.com/chroventer)",
   "homepage": "https://endb.js.org",
-  "repository": "github:enhancex/endb",
+  "repository": "enhancex/endb",
   "bugs": "https://github.com/enhancex/endb/issues",
   "dependencies": {
     "mongodb": "3.5.9"

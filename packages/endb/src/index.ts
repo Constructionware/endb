@@ -68,7 +68,7 @@ export class Endb<TVal = void> extends EventEmitter {
         const { store, deserialize } = this.options;
         if (store instanceof Map) {
             const elements = [];
-            for (const [key, value] of store) {
+            for (const [key, value] of store.entries()) {
                 elements.push({
                     key: this.removeKeyPrefix(key),
                     value: typeof value === "string" ? deserialize(value) : value,

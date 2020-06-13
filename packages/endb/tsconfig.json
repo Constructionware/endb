@@ -1,7 +1,14 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist",
-    "rootDir": "./src"
-  }
+    "target": "ES6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "rootDir": "src",
+    "outDir": "dist",
+    "declaration": true,
+    "esModuleInterop": true,
+    "downlevelIteration": true
+  },
+  "exclude": ["**/*.test.*"]
 }
