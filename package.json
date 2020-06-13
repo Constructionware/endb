@@ -4,11 +4,13 @@
     "packages/*"
   ],
   "scripts": {
+    "lint": "eslint --ext .js ./",
     "test": "jest --ci --forceExit",
     "test:docker": "docker-compose up --build --abort-on-container-exit --exit-code-from test",
     "publish": "lerna publish"
   },
   "devDependencies": {
+    "eslint": "^7.2.0",
     "jest": "26.0.1",
     "lerna": "3.22.1"
   },
@@ -20,5 +22,16 @@
       "<rootDir>/packages"
     ],
     "verbose": true
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "es6": true,
+      "node": true,
+      "jest": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2018
+    }
   }
 }

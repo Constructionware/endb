@@ -1,7 +1,7 @@
 'use strict';
 
 const EventEmitter = require('events');
-const { promisify } = require('util');
+const {promisify} = require('util');
 const {createClient} = require('redis');
 
 module.exports = class EndbRedis extends EventEmitter {
@@ -26,7 +26,7 @@ module.exports = class EndbRedis extends EventEmitter {
 			object[method] = promisify(fn.bind(client));
 			return object;
 		}, {});
-		client.on('error', (error) => this.emit('error', error));
+		client.on('error', error => this.emit('error', error));
 	}
 
 	async all() {
@@ -54,7 +54,10 @@ module.exports = class EndbRedis extends EventEmitter {
 
 	async get(key) {
 		const value = await this.db.get(key);
-		if (value === null) return;
+		if (value === null) {
+			return;
+		}
+
 		return value;
 	}
 
@@ -64,7 +67,10 @@ module.exports = class EndbRedis extends EventEmitter {
 	}
 
 	async set(key, value) {
-		if (typeof value === 'undefined') return;
+		if (typeof value === 'undefined') {
+			return;
+		}
+
 		await this.db.set(key, value);
 		return this.db.sadd(this._prefixNamespace(), key);
 	}
