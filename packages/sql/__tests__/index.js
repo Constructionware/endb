@@ -28,6 +28,14 @@ class TestSqlite extends EndbSql {
   }
 }
 
-apiTest(test, Endb, {
-  store: new TestSqlite(),
+const store = new TestSqlite();
+
+describe("@endb/sql", () => {
+  beforeEach(() => clearEach(Endb, { store }));
+
+  describe("API", () => {
+    valueTest(test, Endb, { store });
+  });
+
+  afterEach(() => clearEach(Endb, { store }));
 });

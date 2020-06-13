@@ -6,7 +6,7 @@ const clearEach = async (Endb, options = {}) => {
 };
 
 const apiTest = (test, Endb, options = {}) => {
-  test("All methods return Promise.", () => {
+  test("methods return a Promise", () => {
     const endb = new Endb(options);
     expect(endb.all()).toBeInstanceOf(Promise);
     expect(endb.clear()).toBeInstanceOf(Promise);
@@ -162,7 +162,7 @@ const valueTest = (test, Endb, options = {}) => {
 };
 
 const adapterTest = (test, Endb, goodUri, badUri) => {
-  test("should infer the adapter from the URI", async () => {
+  test("infers the adapter from the URI", async () => {
     const endb = new Endb(goodUri);
     await endb.clear();
     expect(await endb.get("foo")).toBeUndefined();
@@ -171,7 +171,7 @@ const adapterTest = (test, Endb, goodUri, badUri) => {
     await endb.clear();
   });
 
-  test("should emit connection errors", (done) => {
+  test("emits connection errors", (done) => {
     const endb = new Endb(badUri);
     endb.on("error", () => done());
   });

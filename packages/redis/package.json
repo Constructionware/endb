@@ -1,19 +1,22 @@
 {
   "name": "@endb/redis",
   "version": "1.0.0",
-  "description": "Redis adapter for Endb",
+  "description": "Redis adapter for Endb.",
   "main": "src/index.js",
-  "files": ["src"],
+  "types": "src/index.d.ts",
+  "files": [
+    "src"
+  ],
   "license": "MIT",
   "author": "chroventer (https://github.com/chroventer)",
   "homepage": "https://endb.js.org",
-  "repository": "github:chroventer/endb",
-  "bugs": "https://github.com/endbjs/endb/issues",
+  "repository": "chroventer/endb",
+  "bugs": "https://github.com/chroventer/endb/issues",
   "dependencies": {
     "redis": "3.0.2"
   },
   "devDependencies": {
     "endb": "1.0.0",
-    "@endb/test": "*"
+    "@endb/test": "1.0.0"
   }
 }

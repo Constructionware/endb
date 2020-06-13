@@ -1,19 +1,22 @@
 {
   "name": "@endb/mongo",
   "version": "1.0.0",
-  "description": "MongoDB adapter for Endb",
+  "description": "MongoDB adapter for Endb.",
   "main": "src/index.js",
-  "files": ["src"],
+  "types": "src/index.d.ts",
+  "files": [
+    "src"
+  ],
   "license": "MIT",
   "author": "chroventer (https://github.com/chroventer)",
   "homepage": "https://endb.js.org",
-  "repository": "github:endbjs/endb",
-  "bugs": "https://github.com/endbjs/endb/issues",
+  "repository": "chroventer/endb",
+  "bugs": "https://github.com/chroventer/endb/issues",
   "dependencies": {
     "mongodb": "3.5.7"
   },
   "devDependencies": {
     "endb": "1.0.0",
-    "@endb/test": "*"
+    "@endb/test": "1.0.0"
   }
 }

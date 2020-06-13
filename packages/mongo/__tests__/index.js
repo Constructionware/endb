@@ -10,8 +10,13 @@ const store = new EndbMongo({ uri });
 
 describe("@endb/mongo", () => {
   beforeEach(() => clearEach(Endb, { store }));
-  apiTest(test, Endb, { store });
-  valueTest(test, Endb, { store });
-  adapterTest(test, Endb, uri, "mongodb://127.0.0.1:1234");
+  describe("API", () => {
+    apiTest(test, Endb, { store });
+  });
+
+  describe("adapter", () => {
+    adapterTest(test, Endb, uri, "mongodb://127.0.0.1:1234");
+  });
+
   afterEach(() => clearEach(Endb, { store }));
 });

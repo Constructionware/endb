@@ -1,23 +1,22 @@
 {
   "name": "endb",
   "version": "1.0.0",
+  "description": "Key-value storage with support for multiple databases.",
   "main": "src/index.js",
-  "files": ["src"],
+  "types": "src/index.d.ts",
+  "files": [
+    "src"
+  ],
   "license": "MIT",
   "author": "chroventer (https://github.com/chroventer)",
   "homepage": "https://endb.js.org",
-  "repository": "github:endbjs/endb",
-  "bugs": "https://github.com/endbjs/endb/issues",
+  "repository": "chroventer/endb",
+  "bugs": "https://github.com/chroventer/endb/issues",
   "dependencies": {
-    "buffer-json": "2.0.0",
-    "lodash": "4.17.15"
+    "lodash": "4.17.15",
+    "buffer-json": "2.0.0"
   },
   "devDependencies": {
-    "@endb/test": "1.0.0",
-    "@endb/mongo": "1.0.0",
-    "@endb/mysql": "1.0.0",
-    "@endb/postgres": "1.0.0",
-    "@endb/redis": "1.0.0",
-    "@endb/sqlite": "1.0.0"
+    "@endb/test": "1.0.0"
   }
 }

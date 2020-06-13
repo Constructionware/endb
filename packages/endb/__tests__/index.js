@@ -32,7 +32,13 @@ describe("endb", () => {
     expect(await endb.get("foo")).toBe("bar");
   });
 
-  apiTest(test, Endb);
-  valueTest(test, Endb);
+  describe("API", () => {
+    apiTest(test, Endb);
+  });
+
+  describe("value", () => {
+    valueTest(test, Endb);
+  });
+
   afterEach(() => clearEach(Endb));
 });
