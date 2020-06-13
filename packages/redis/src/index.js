@@ -67,10 +67,6 @@ module.exports = class EndbRedis extends EventEmitter {
 	}
 
 	async set(key, value) {
-		if (typeof value === 'undefined') {
-			return;
-		}
-
 		await this.db.set(key, value);
 		return this.db.sadd(this._prefixNamespace(), key);
 	}

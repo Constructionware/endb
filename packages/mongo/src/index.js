@@ -41,10 +41,6 @@ module.exports = class EndbMongo extends EventEmitter {
 	}
 
 	async delete(key) {
-		if (typeof key !== 'string') {
-			return false;
-		}
-
 		const collection = await this.db;
 		const {deletedCount} = await collection.deleteOne({key});
 		return deletedCount !== undefined && deletedCount > 0;
