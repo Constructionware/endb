@@ -1,6 +1,6 @@
 {
   "name": "@endb/test",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Helper functions for tests.",
   "main": "src/index.js",
   "types": "typings/index.d.ts",
