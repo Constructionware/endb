@@ -2,7 +2,7 @@
 
 const Endb = require("endb");
 const EndbSqlite = require("@endb/sqlite");
-const { apiTest, adapterTest } = require("@endb/test");
+const { apiTest, adapterTest, valueTest, clearEach } = require("@endb/test");
 
 const uri = "sqlite://test.sqlite";
 const store = new EndbSqlite({
@@ -15,6 +15,10 @@ describe("@endb/mongo", () => {
 
   describe("API", () => {
     apiTest(test, Endb, { store });
+  });
+
+  describe("value", () => {
+    valueTest(test, Endb, { store });
   });
 
   describe("adapter", () => {

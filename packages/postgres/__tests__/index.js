@@ -2,7 +2,7 @@
 
 const Endb = require("endb");
 const EndbPostgres = require("../src");
-const { apiTest, adapterTest } = require("@endb/test");
+const { apiTest, adapterTest, valueTest, clearEach } = require("@endb/test");
 
 const {
   POSTGRES_HOST = "localhost",
@@ -18,8 +18,13 @@ const store = new EndbPostgres({ uri });
 
 describe("@endb/postgres", () => {
   beforeEach(() => clearEach(Endb, { store }));
+
   describe("API", () => {
     apiTest(test, Endb, { store });
+  });
+
+  describe("value", () => {
+    valueTest(test, Endb, { store });
   });
 
   describe("adapter", () => {

@@ -1,16 +1,16 @@
-'use strict';
+"use strict";
 
-const Endb = require('endb');
-const { apiTest } = require('@endb/test');
-const EndbSql = require('@endb/sql');
-const { promisify } = require('util');
-const { Database } = require('sqlite3');
+const Endb = require("endb");
+const { apiTest, valueTest, clearEach } = require("@endb/test");
+const EndbSql = require("@endb/sql");
+const { promisify } = require("util");
+const { Database } = require("sqlite3");
 
 class TestSqlite extends EndbSql {
   constructor(options = {}) {
     options = {
-      dialect: 'sqlite',
-      db: ':memory:',
+      dialect: "sqlite",
+      db: ":memory:",
       ...options,
     };
     options.connect = async () =>
@@ -19,7 +19,7 @@ class TestSqlite extends EndbSql {
           if (error) {
             reject(error);
           } else {
-            db.configure('busyTimeout', 30000);
+            db.configure("busyTimeout", 30000);
             resolve(db);
           }
         });
@@ -34,6 +34,10 @@ describe("@endb/sql", () => {
   beforeEach(() => clearEach(Endb, { store }));
 
   describe("API", () => {
+    apiTest(test, Endb, { store });
+  });
+
+  describe("value", () => {
     valueTest(test, Endb, { store });
   });
 

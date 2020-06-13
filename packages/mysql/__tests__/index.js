@@ -2,7 +2,7 @@
 
 const Endb = require("endb");
 const EndbMysql = require("@endb/mysql");
-const { apiTest, adapterTest } = require("@endb/test");
+const { apiTest, adapterTest, valueTest, clearEach } = require("@endb/test");
 
 const {
   MYSQL_HOST = "mysql",
@@ -19,6 +19,10 @@ describe("@endb/mysql", () => {
   beforeEach(() => clearEach(Endb, { store }));
 
   describe("API", () => {
+    apiTest(test, Endb, { store });
+  });
+
+  describe("value", () => {
     valueTest(test, Endb, { store });
   });
 

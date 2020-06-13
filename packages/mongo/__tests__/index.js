@@ -10,8 +10,13 @@ const store = new EndbMongo({ uri });
 
 describe("@endb/mongo", () => {
   beforeEach(() => clearEach(Endb, { store }));
+
   describe("API", () => {
     apiTest(test, Endb, { store });
+  });
+
+  describe("value", () => {
+    valueTest(test, Endb, { store });
   });
 
   describe("adapter", () => {
