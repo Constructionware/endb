@@ -1,5 +1,5 @@
 # [Endb](https://endb.js.org) &middot; [![Test](https://github.com/chroventer/endb/workflows/Test/badge.svg)](https://github.com/chroventer/endb) [![codecov](https://codecov.io/gh/chroventer/endb/branch/master/graph/badge.svg)](https://codecov.io/gh/chroventer/endb) [![License](https://badgen.net/github/license/chroventer/endb)](https://github.com/chroventer/endb/blob/master/LICENSE) [![Discord](https://discordapp.com/api/guilds/697425515363172362/embed.png)](https://discord.gg/d5SYmjj)
-> Key-value storage for multiple databases.
+> Key-value storage for multiple databases
 
 - **Easy-to-use**: Endb has a simplistic and neat promise-based API.
 - **Adapters**: By default, data is cached in memory. The officially supported adapters are covered by many tests to guarantee consistent behavior. They are lightweight, efficient wrappers over various database drivers. Offcially supported adapters are MongoDB, MySQL, PostgreSQL, Redis, and SQLite.
@@ -48,3 +48,11 @@ await endb.all(); // [ { key: 'foo', value: 'bar' } ]
 await endb.delete('foo'); // true
 await endb.clear(); // undefined
 ```
+
+## Links
+
+- [Website](https://endb.js.org)
+- [API Reference](https://endb.js.org/api)
+- [Discord](https://discord.com/invite/d5SYmjj)
+- [GitHub](https://github.com/chroventer/endb)
+- [NPM](https://npmjs.com/endb)
