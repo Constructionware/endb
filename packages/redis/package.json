@@ -1,18 +1,16 @@
 {
-  "name": "@endb/sqlite",
+  "name": "@endb/redis",
   "version": "1.0.0",
-  "description": "SQLite adapter for Endb",
+  "description": "Redis adapter for Endb",
   "main": "src/index.js",
-  "files": [
-    "src"
-  ],
+  "files": ["src"],
   "license": "MIT",
   "author": "chroventer (https://github.com/chroventer)",
   "homepage": "https://endb.js.org",
-  "repository": "github:endbjs/endb",
+  "repository": "github:chroventer/endb",
   "bugs": "https://github.com/endbjs/endb/issues",
   "dependencies": {
-    "sqlite3": "4.2.0"
+    "redis": "3.0.2"
   },
   "devDependencies": {
     "endb": "1.0.0",

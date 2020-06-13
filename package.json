@@ -1,5 +1,4 @@
 {
-  "name": "@endb/monorepo",
   "private": true,
   "workspaces": {
     "packages": [
@@ -7,45 +6,18 @@
     ]
   },
   "scripts": {
-    "lint": "eslint --ignore-path .gitignore --ext .js packages/**",
-    "test": "jest --ci --noStackTrace --forceExit --maxWorkers=4",
-    "test:docker": "docker-compose up --build --abort-on-container-exit --exit-code-from test",
-    "docs:build": "node docs.js"
+    "test": "jest",
+    "publish": "lerna publish"
   },
   "devDependencies": {
-    "@commitlint/cli": "8.3.5",
-    "@commitlint/config-angular": "8.3.4",
-    "eslint": "7.0.0",
-    "husky": "4.2.5",
     "jest": "26.0.1",
-    "lerna": "3.21.0",
-    "lint-staged": "10.2.4"
+    "lerna": "3.22.1"
   },
-  "eslintConfig": {
-    "extends": [
-      "eslint:recommended"
-    ],
-    "env": {
-      "node": true,
-      "jest": true,
-      "es6": true
-    },
-    "parserOptions": {
-      "ecmaVersion": 2018
-    }
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": "yarn lint --fix"
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-angular"
-    ]
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "coverage",
+    "testEnvironment": "node",
+    "roots": ["<rootDir>/packages"],
+    "verbose": true
   }
 }

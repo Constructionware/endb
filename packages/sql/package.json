@@ -1,7 +1,7 @@
 {
-  "name": "@endb/redis",
+  "name": "@endb/sql",
   "version": "1.0.0",
-  "description": "Redis adapter for Endb",
+  "description": "SQL adapter for Endb.",
   "main": "src/index.js",
   "files": ["src"],
   "license": "MIT",
@@ -10,10 +10,11 @@
   "repository": "github:endbjs/endb",
   "bugs": "https://github.com/endbjs/endb/issues",
   "dependencies": {
-    "redis": "3.0.2"
+    "sql": "0.78.0"
   },
   "devDependencies": {
     "endb": "1.0.0",
-    "@endb/test": "*"
+    "@endb/test": "1.0.0",
+    "sqlite3": "4.2.0"
   }
 }
