@@ -4,14 +4,16 @@
     "packages/*"
   ],
   "scripts": {
-    "lint": "eslint --ext .js ./",
+    "lint": "eslint --ext .js packages/**",
     "test": "jest --ci --forceExit",
     "test:docker": "docker-compose up --build --abort-on-container-exit --exit-code-from test",
-    "publish": "lerna publish"
+    "publish": "lerna publish",
+    "build:docs": "node docs.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-angular": "^8.3.4",
+    "docma": "^3.2.2",
     "eslint": "^7.2.0",
     "husky": "^4.2.5",
     "jest": "26.0.1",

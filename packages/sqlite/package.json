@@ -1,7 +1,7 @@
 {
   "name": "@endb/sqlite",
-  "version": "0.0.1",
-  "description": "SQLite adapter for Endb.",
+  "version": "1.0.0",
+  "description": "SQLite adapter for Endb",
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "files": [
@@ -16,7 +16,7 @@
     "sqlite3": "4.2.0"
   },
   "devDependencies": {
-    "endb": "1.0.0",
-    "@endb/test": "1.0.0"
+    "@endb/test": "1.0.0",
+    "endb": "1.0.0"
   }
 }

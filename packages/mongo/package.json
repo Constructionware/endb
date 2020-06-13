@@ -1,7 +1,7 @@
 {
   "name": "@endb/mongo",
-  "version": "0.0.1",
-  "description": "MongoDB adapter for Endb.",
+  "version": "1.0.0",
+  "description": "MongoDB adapter for Endb",
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "files": [
@@ -16,7 +16,7 @@
     "mongodb": "3.5.7"
   },
   "devDependencies": {
-    "endb": "1.0.0",
-    "@endb/test": "1.0.0"
+    "@endb/test": "1.0.0",
+    "endb": "1.0.0"
   }
 }

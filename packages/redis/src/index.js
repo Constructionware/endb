@@ -1,77 +1,92 @@
-'use strict';
+"use strict";
 
-const EventEmitter = require('events');
-const {promisify} = require('util');
-const {createClient} = require('redis');
+const EventEmitter = require("events");
+const util = require("util");
+const Redis = require("redis");
 
-module.exports = class EndbRedis extends EventEmitter {
-	constructor(options = {}) {
-		super();
-		if (options.uri && typeof options.url === 'undefined') {
-			options.url = options.uri;
-		}
+/**
+ * @extends EventEmitter
+ */
+class EndbRedis extends EventEmitter {
+  /**
+   * @typedef EndbRedisOptions
+   * @property {string} [uri] The connection URI
+   * @link https://www.npmjs.com/package/redis#options-object-properties
+   */
 
-		const client = createClient(options);
-		this.db = [
-			'get',
-			'set',
-			'sadd',
-			'del',
-			'exists',
-			'srem',
-			'keys',
-			'smembers'
-		].reduce((object, method) => {
-			const fn = client[method];
-			object[method] = promisify(fn.bind(client));
-			return object;
-		}, {});
-		client.on('error', error => this.emit('error', error));
-	}
+  /**
+   * Creates a new EndbRedis instance
+   * @param {EndbRedisOptions} [options={}]
+   */
+  constructor(options = {}) {
+    super();
+    if (options.uri && typeof options.url === "undefined") {
+      options.url = options.uri;
+    }
 
-	async all() {
-		const keys = await this.db.keys(`${this.namespace}*`);
-		const elements = [];
-		for (const key of keys) {
-			const value = await this.db.get(key);
-			elements.push({key, value});
-		}
+    const client = Redis.createClient(options);
+    this.db = [
+      "get",
+      "set",
+      "sadd",
+      "del",
+      "exists",
+      "srem",
+      "keys",
+      "smembers",
+    ].reduce((object, method) => {
+      const fn = client[method];
+      object[method] = util.promisify(fn.bind(client));
+      return object;
+    }, {});
+    client.on("error", (error) => this.emit("error", error));
+  }
 
-		return elements;
-	}
+  async all() {
+    const keys = await this.db.keys(`${this.namespace}*`);
+    const elements = [];
+    for (const key of keys) {
+      const value = await this.db.get(key);
+      elements.push({ key, value });
+    }
 
-	async clear() {
-		const namespace = this._prefixNamespace();
-		const keys = await this.db.smembers(namespace);
-		await this.db.del(...keys.concat(namespace));
-	}
+    return elements;
+  }
 
-	async delete(key) {
-		const items = await this.db.del(key);
-		await this.db.srem(this._prefixNamespace(), key);
-		return items > 0;
-	}
+  async clear() {
+    const namespace = this._prefixNamespace();
+    const keys = await this.db.smembers(namespace);
+    await this.db.del(...keys.concat(namespace));
+  }
 
-	async get(key) {
-		const value = await this.db.get(key);
-		if (value === null) {
-			return;
-		}
+  async delete(key) {
+    const items = await this.db.del(key);
+    await this.db.srem(this._prefixNamespace(), key);
+    return items > 0;
+  }
 
-		return value;
-	}
+  async get(key) {
+    const value = await this.db.get(key);
+    if (value === null) {
+      return;
+    }
 
-	async has(key) {
-		const exists = await this.db.exists(key);
-		return Boolean(exists);
-	}
+    return value;
+  }
 
-	async set(key, value) {
-		await this.db.set(key, value);
-		return this.db.sadd(this._prefixNamespace(), key);
-	}
+  async has(key) {
+    const exists = await this.db.exists(key);
+    return Boolean(exists);
+  }
 
-	_prefixNamespace() {
-		return `namespace:${this.namespace}`;
-	}
-};
+  async set(key, value) {
+    await this.db.set(key, value);
+    return this.db.sadd(this._prefixNamespace(), key);
+  }
+
+  _prefixNamespace() {
+    return `namespace:${this.namespace}`;
+  }
+}
+
+module.exports = EndbRedis;

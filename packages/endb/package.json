@@ -1,7 +1,7 @@
 {
   "name": "endb",
-  "version": "0.0.1",
-  "description": "Key-value storage with support for multiple databases.",
+  "version": "1.0.0",
+  "description": "Key-value storage with support for multiple databases",
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "files": [
@@ -13,8 +13,8 @@
   "repository": "chroventer/endb",
   "bugs": "https://github.com/chroventer/endb/issues",
   "dependencies": {
-    "lodash": "4.17.15",
-    "buffer-json": "2.0.0"
+    "buffer-json": "2.0.0",
+    "lodash": "4.17.15"
   },
   "devDependencies": {
     "@endb/test": "1.0.0"

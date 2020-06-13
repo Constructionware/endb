@@ -1,110 +1,127 @@
-'use strict';
+"use strict";
 
-const EventEmitter = require('events');
-const {Sql} = require('sql');
+const EventEmitter = require("events");
+const sql = require("sql");
 
-module.exports = class EndbSql extends EventEmitter {
-	constructor(options = {}) {
-		super();
-		this.options = {
-			table: 'endb',
-			keySize: 255,
-			...options
-		};
-		const db = new Sql(this.options.dialect);
-		this.entry = db.define({
-			name: this.options.table,
-			columns: [
-				{
-					name: 'key',
-					primaryKey: true,
-					dataType: `VARCHAR(${Number(this.options.keySize)})`
-				},
-				{
-					name: 'value',
-					dataType: 'TEXT'
-				}
-			]
-		});
-		const connected = this.options
-			.connect()
-			.then(async query => {
-				const createTable = this.entry.create().ifNotExists().toString();
-				await query(createTable);
-				return query;
-			})
-			.catch(error => this.emit('error', error));
-		this.query = async sqlString => {
-			const query = await connected;
-			if (query) {
-				return query(sqlString);
-			}
-		};
-	}
+/**
+ * EndbSql
+ * @extends EventEmitter
+ */
+class EndbSql extends EventEmitter {
+  /**
+   * @typedef EndbSqlOptions
+   * @property {string} [table='endb'] The table
+   * @property {number} [keySize=255] The maximum key size
+   * @property {string} [dialect] The SQL dialect
+   */
 
-	async all() {
-		const select = this.entry
-			.select('*')
-			.where(this.entry.key.like(`${this.namespace}:%`))
-			.toString();
-		const rows = await this.query(select);
-		return rows;
-	}
+  /**
+   * Creates a new EndbSql instance
+   * @param {EndbSqlOptions} [options={}]
+   */
+  constructor(options = {}) {
+    super();
+    this.options = {
+      table: "endb",
+      keySize: 255,
+      ...options,
+    };
+    const db = new sql.Sql(this.options.dialect);
+    this.entry = db.define({
+      name: this.options.table,
+      columns: [
+        {
+          name: "key",
+          primaryKey: true,
+          dataType: `VARCHAR(${Number(this.options.keySize)})`,
+        },
+        {
+          name: "value",
+          dataType: "TEXT",
+        },
+      ],
+    });
+    const connected = this.options
+      .connect()
+      .then(async (query) => {
+        const createTable = this.entry.create().ifNotExists().toString();
+        await query(createTable);
+        return query;
+      })
+      .catch((error) => this.emit("error", error));
+    this.query = async (sqlString) => {
+      const query = await connected;
+      if (query) {
+        return query(sqlString);
+      }
+    };
+  }
 
-	async clear() {
-		const del = this.entry
-			.delete()
-			.where(this.entry.key.like(`${this.namespace}:%`))
-			.toString();
-		await this.query(del);
-	}
+  async all() {
+    const select = this.entry
+      .select("*")
+      .where(this.entry.key.like(`${this.namespace}:%`))
+      .toString();
+    const rows = await this.query(select);
+    return rows;
+  }
 
-	async delete(key) {
-		const select = this.entry.select().where({key}).toString();
-		const del = this.entry.delete().where({key}).toString();
-		const [row] = await this.query(select);
-		if (row === undefined) {
-			return false;
-		}
+  async clear() {
+    const del = this.entry
+      .delete()
+      .where(this.entry.key.like(`${this.namespace}:%`))
+      .toString();
+    await this.query(del);
+  }
 
-		await this.query(del);
-		return true;
-	}
+  async delete(key) {
+    const select = this.entry.select().where({ key }).toString();
+    const del = this.entry.delete().where({ key }).toString();
+    const [row] = await this.query(select);
+    if (row === undefined) {
+      return false;
+    }
 
-	async get(key) {
-		const select = this.entry.select().where({key}).toString();
-		const [row] = await this.query(select);
-		if (row === undefined) {
-			return undefined;
-		}
+    await this.query(del);
+    return true;
+  }
 
-		return row.value;
-	}
+  async get(key) {
+    const select = this.entry.select().where({ key }).toString();
+    const [row] = await this.query(select);
+    if (row === undefined) {
+      return undefined;
+    }
 
-	async has(key) {
-		const select = this.entry.select().where({key}).toString();
-		const [row] = await this.query(select);
-		return Boolean(row);
-	}
+    return row.value;
+  }
 
-	async set(key, value) {
-		let upsert;
-		if (this.options.dialect === 'mysql') {
-			value = value.replace(/\\/g, '\\\\');
-		}
+  async has(key) {
+    const select = this.entry.select().where({ key }).toString();
+    const [row] = await this.query(select);
+    return Boolean(row);
+  }
 
-		if (this.options.dialect === 'postgres') {
-			upsert = this.entry
-				.insert({key, value})
-				.onConflict({
-					columns: ['key'],
-					update: ['value']
-				})
-				.toString();
-		} else {
-			upsert = this.entry.replace({key, value}).toString();
-		}
+  async set(key, value) {
+    let upsert;
+    if (this.options.dialect === "mysql") {
+      value = value.replace(/\\/g, "\\\\");
+    }
 
-		return this.query(upsert);
-	}
-};
+    if (this.options.dialect === "postgres") {
+      upsert = this.entry
+        .insert({ key, value })
+        .onConflict({
+          columns: ["key"],
+          update: ["value"],
+        })
+        .toString();
+    } else {
+      upsert = this.entry.replace({ key, value }).toString();
+    }
+
+    return this.query(upsert);
+  }
+}
+
+module.exports = EndbSql;
