@@ -4,7 +4,7 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "jest",
+    "test": "jest --ci --forceExit",
     "test:docker": "docker-compose up --build --abort-on-container-exit --exit-code-from test",
     "publish": "lerna publish"
   },
