@@ -1,6 +1,6 @@
 {
   "name": "@endb/redis",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Redis adapter for Endb",
   "main": "src/index.js",
   "types": "src/index.d.ts",
@@ -16,7 +16,7 @@
     "redis": "3.0.2"
   },
   "devDependencies": {
-    "@endb/test": "1.0.0",
-    "endb": "1.0.0"
+    "@endb/test": "*",
+    "endb": "*"
   }
 }
