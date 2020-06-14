@@ -1,6 +1,6 @@
 {
   "name": "endb",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Key-value storage with support for multiple databases",
   "main": "src/index.js",
   "types": "src/index.d.ts",
